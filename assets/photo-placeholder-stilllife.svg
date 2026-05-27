@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  
+  <defs>
+    <radialGradient id="ph5-warm" cx="35%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#E6C895"></stop>
+      <stop offset="40%" stop-color="#A57A4D"></stop>
+      <stop offset="100%" stop-color="#3D2418"></stop>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#ph5-warm)"></rect>
+  
+  <rect y="380" width="800" height="220" fill="#2A1810" opacity="0.5"></rect>
+  
+  <path d="M 360 340 Q 340 380 360 460 L 440 460 Q 460 380 440 340 Q 430 320 440 300 L 360 300 Q 370 320 360 340 Z" fill="#3A0A0C" opacity="0.85"></path>
+  <ellipse cx="400" cy="298" rx="42" ry="6" fill="#3A0A0C" opacity="0.7"></ellipse>
+  <text x="30" y="580" font-family="&#39;Italiana&#39;, serif" font-size="13" fill="#E6C895" opacity="0.7" letter-spacing="3">PLACEHOLDER · STILL LIFE</text>
+</svg>

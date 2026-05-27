@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  
+  <defs>
+    <linearGradient id="ph3-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E6C895"></stop>
+      <stop offset="100%" stop-color="#B08A4A"></stop>
+    </linearGradient>
+    <linearGradient id="ph3-stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D6C5AB"></stop>
+      <stop offset="100%" stop-color="#6E614F"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#ph3-sky)"></rect>
+  
+  <rect y="620" width="1200" height="180" fill="#3D2418" opacity="0.55"></rect>
+  
+  <g fill="url(#ph3-stone)">
+    <g>
+      <rect x="80" y="200" width="180" height="420"></rect>
+      <path d="M 80 200 Q 170 80 260 200 L 260 230 L 80 230 Z" fill="#E6C895" opacity="0.6"></path>
+      <rect x="115" y="245" width="110" height="375" fill="#3D2418" opacity="0.7"></rect>
+      <path d="M 115 245 Q 170 175 225 245 L 225 270 L 115 270 Z" fill="#3D2418" opacity="0.9"></path>
+    </g>
+    <g transform="translate(220 0)">
+      <rect x="80" y="200" width="180" height="420"></rect>
+      <path d="M 80 200 Q 170 80 260 200 L 260 230 L 80 230 Z" fill="#E6C895" opacity="0.6"></path>
+      <rect x="115" y="245" width="110" height="375" fill="#3D2418" opacity="0.7"></rect>
+      <path d="M 115 245 Q 170 175 225 245 L 225 270 L 115 270 Z" fill="#3D2418" opacity="0.9"></path>
+    </g>
+    <g transform="translate(440 0)">
+      <rect x="80" y="200" width="180" height="420"></rect>
+      <path d="M 80 200 Q 170 80 260 200 L 260 230 L 80 230 Z" fill="#E6C895" opacity="0.6"></path>
+      <rect x="115" y="245" width="110" height="375" fill="#3D2418" opacity="0.7"></rect>
+      <path d="M 115 245 Q 170 175 225 245 L 225 270 L 115 270 Z" fill="#3D2418" opacity="0.9"></path>
+    </g>
+    <g transform="translate(660 0)">
+      <rect x="80" y="200" width="180" height="420"></rect>
+      <path d="M 80 200 Q 170 80 260 200 L 260 230 L 80 230 Z" fill="#E6C895" opacity="0.6"></path>
+      <rect x="115" y="245" width="110" height="375" fill="#3D2418" opacity="0.7"></rect>
+      <path d="M 115 245 Q 170 175 225 245 L 225 270 L 115 270 Z" fill="#3D2418" opacity="0.9"></path>
+    </g>
+    <g transform="translate(880 0)">
+      <rect x="80" y="200" width="180" height="420"></rect>
+      <path d="M 80 200 Q 170 80 260 200 L 260 230 L 80 230 Z" fill="#E6C895" opacity="0.6"></path>
+      <rect x="115" y="245" width="110" height="375" fill="#3D2418" opacity="0.7"></rect>
+      <path d="M 115 245 Q 170 175 225 245 L 225 270 L 115 270 Z" fill="#3D2418" opacity="0.9"></path>
+    </g>
+  </g>
+  <text x="40" y="770" font-family="&#39;Italiana&#39;, serif" font-size="14" fill="#E6C895" letter-spacing="3">PLACEHOLDER · ARCHITECTURE</text>
+</svg>

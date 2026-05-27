@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stavroula Papadaki, Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../colors_and_type.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* faint grain over everything */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: url("../../assets/grain.svg");
+      background-size: 220px;
+      mix-blend-mode: multiply;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 1;
+    }
+    button, a { font-family: inherit; }
+    /* fade-in on load — uses forwards fill + opacity-only fallback so a throttled iframe never leaves sections invisible */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .rise > * {
+      opacity: 1;  /* baseline — always visible even if the animation never runs */
+      animation: rise 500ms var(--ease-out-quart) both;
+    }
+    .rise > *:nth-child(1) { animation-delay: 40ms; }
+    .rise > *:nth-child(2) { animation-delay: 110ms; }
+    .rise > *:nth-child(3) { animation-delay: 180ms; }
+    .rise > *:nth-child(4) { animation-delay: 250ms; }
+    .rise > *:nth-child(5) { animation-delay: 320ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .rise > * { animation: none; }
+    }
+
+    /* essay modal */
+    .essay-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(42, 31, 24, 0.55);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      animation: rise 280ms var(--ease-out-quart) both;
+    }
+    .essay-modal {
+      background: var(--cream-100);
+      border-radius: 32px;
+      width: min(760px, 100%);
+      max-height: 86vh;
+      overflow: auto;
+      box-shadow: 0 32px 96px rgba(58,10,12,.4);
+      padding: 56px 64px;
+      position: relative;
+    }
+    .essay-modal::-webkit-scrollbar { width: 8px; }
+    .essay-modal::-webkit-scrollbar-thumb { background: rgba(122,26,26,.25); border-radius: 4px; }
+    .essay-close {
+      position: absolute; top: 18px; right: 18px;
+      background: var(--cream-200); border: none;
+      width: 36px; height: 36px; border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--ink-700);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel" src="Header.jsx"></script>
+  <script type="text/babel" src="Hero.jsx"></script>
+  <script type="text/babel" src="AboutSection.jsx"></script>
+  <script type="text/babel" src="LeadershipSection.jsx"></script>
+  <script type="text/babel" src="WorkSection.jsx"></script>
+  <script type="text/babel" src="ContactSection.jsx"></script>
+  <script type="text/babel" src="Footer.jsx"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function EssayModal({ onClose }) {
+      useEffect(() => {
+        const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+      }, [onClose]);
+      useEffect(() => { window.lucide && window.lucide.createIcons(); });
+      return (
+        <div className="essay-overlay" onClick={onClose}>
+          <div className="essay-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="essay-close" onClick={onClose}>
+              <i data-lucide="x" style={{ width: 16, height: 16 }}></i>
+            </button>
+            <Eyebrow style={{ marginBottom: 18 }}>Essay · Medium · 2026</Eyebrow>
+            <h2 style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 500,
+              fontSize: 44,
+              lineHeight: 1.05,
+              letterSpacing: "-0.02em",
+              color: "var(--ink-900)",
+              margin: 0,
+            }}>
+              On <em style={{ fontWeight: 400 }}>believing in people</em> before they believe in themselves.
+            </h2>
+            <div style={{
+              marginTop: 16,
+              fontFamily: "var(--font-body)",
+              fontSize: 13,
+              color: "var(--fg-muted)",
+              letterSpacing: "0.04em",
+            }}>By Stavroula Papadaki · 8 min read</div>
+
+            <div style={{
+              marginTop: 28,
+              fontFamily: "var(--font-body)",
+              fontSize: 16,
+              lineHeight: 1.75,
+              color: "var(--ink-700)",
+            }}>
+              <p style={{ marginTop: 0 }}>
+                The first time I captained a national team, I was sixteen, the youngest player on a U18 roster, and nobody had asked me to lead anything. We finished third in Greece that year as underdogs, and the lesson I took home wasn't about strategy or shots. It was about the quiet decision a captain makes, the one no one sees, to believe in a teammate <em>before</em> she believes in herself.
+              </p>
+              <p>
+                I grew up in Chania, Greece, and from a young age I was surrounded by teams. Basketball became my world pretty early on, and I quickly realized that what makes a team great is not always talent, but whether people believe in each other. That is something I carried with me to Stanford, where I played Division I basketball and eventually became a captain.
+              </p>
+              <p>
+                I never thought of myself as the loudest or most dominant player, but I cared a lot about my teammates and what they were capable of, sometimes more than they did themselves. Looking back, that is probably the clearest thing I can say about how I lead. I believe in people before they believe in themselves.
+              </p>
+              <p style={{
+                fontFamily: "var(--font-display)",
+                fontStyle: "italic",
+                fontSize: 22,
+                lineHeight: 1.45,
+                color: "var(--ink-900)",
+                margin: "28px 0",
+                borderLeft: "3px solid var(--wine-500)",
+                paddingLeft: 18,
+              }}>
+                The captain on the floor and the analyst in the seminar room turn out to be the same person, asking the same question. What does this team need to move forward together?
+              </p>
+              <p>
+                The full essay continues on Medium. This is a preview drop-in; click the close button or press Escape to return.
+              </p>
+            </div>
+
+            <div style={{
+              marginTop: 28, paddingTop: 22,
+              borderTop: "1px solid var(--border-soft)",
+              display: "flex", justifyContent: "space-between", alignItems: "center", gap: 14,
+            }}>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontStyle: "italic",
+                fontSize: 15,
+                color: "var(--fg-muted)",
+              }}>Yours, Stavi</div>
+              <Button icon="arrow-up-right" href="#" onClick={(e) => { e.preventDefault(); alert("(prototype) Would open the full essay on Medium."); }}>Continue on Medium</Button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      const [active, setActive] = useState("home");
+      const [essayOpen, setEssayOpen] = useState(false);
+
+      const onNav = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 60;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      };
+
+      // Active section tracking via IntersectionObserver
+      useEffect(() => {
+        const ids = ["home", "about", "leadership", "work", "contact"];
+        const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) setActive(e.target.id);
+          });
+        }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
+        sections.forEach((s) => io.observe(s));
+        return () => io.disconnect();
+      }, []);
+
+      useEffect(() => { window.lucide && window.lucide.createIcons(); });
+
+      return (
+        <React.Fragment>
+          <Header active={active} onNav={onNav}/>
+          <main className="rise" style={{ paddingTop: 90, position: "relative", zIndex: 2 }}>
+            <Hero onNav={onNav}/>
+            <AboutSection/>
+            <LeadershipSection onOpenEssay={() => setEssayOpen(true)}/>
+            <WorkSection/>
+            <ContactSection/>
+          </main>
+          <Footer/>
+          {essayOpen && <EssayModal onClose={() => setEssayOpen(false)}/>}
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+  </script>
+</body>
+</html>

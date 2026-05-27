@@ -1,0 +1,29 @@
+/* Shared card chrome for /preview/* HTML files (Design System tab) */
+@import url("../colors_and_type.css");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dscard {
+  padding: 24px 28px;
+  min-height: 0;
+}
+
+.dsrow {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.dsstack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

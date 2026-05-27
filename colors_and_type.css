@@ -1,0 +1,329 @@
+/* ============================================================
+   Stavroula Papadaki — Portfolio Design System
+   colors_and_type.css
+
+   European editorial. Museum invitation meets personal portfolio.
+   Warm mushroom/taupe ground, deep burgundy/wine accent, cream cards.
+   ============================================================ */
+
+/* ---------- Webfonts (Google substitutes — see README) ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@300;400;500;600;700&family=Italiana&display=swap");
+
+:root {
+  /* ============================================================
+     COLOR — base palette
+     ============================================================ */
+
+  /* Mushroom / taupe — the room. Walls, parchment, plaster. */
+  --taupe-50:   #EFE7DA;   /* soft chalk highlight */
+  --taupe-100:  #E5D9C7;   /* page edge */
+  --taupe-200:  #D6C5AB;   /* lighter mushroom */
+  --taupe-300:  #C4B5A0;   /* PRIMARY background — warm mushroom */
+  --taupe-400:  #B0A088;   /* dust shadow */
+  --taupe-500:  #968670;   /* deep mushroom, dividers */
+  --taupe-600:  #6E614F;   /* sepia text on taupe */
+
+  /* Burgundy / wine — the velvet. Curtain, ribbon, candlelight. */
+  --wine-50:    #F3E2DE;   /* faint wash */
+  --wine-100:   #D9A29C;   /* dried rose */
+  --wine-300:   #A24043;   /* lighter wine, hover state */
+  --wine-500:   #7A1A1A;   /* PRIMARY accent — deep burgundy */
+  --wine-700:   #5C0F12;   /* shadow wine, pressed states */
+  --wine-900:   #3A0A0C;   /* near-black wine, deepest contrast */
+
+  /* Cream / off-white — the page. Content card surface. */
+  --cream-50:   #FBF6EC;   /* brightest highlight */
+  --cream-100:  #F7EFE0;   /* PRIMARY card surface */
+  --cream-200:  #F0E6D2;   /* card surface, secondary */
+  --cream-300:  #E8DBC0;   /* card edge */
+
+  /* Ink — text colors. Brown-black, never pure black. */
+  --ink-900:    #2A1F18;   /* primary text, headings */
+  --ink-700:    #3D2E22;   /* body text */
+  --ink-500:    #5C4A3C;   /* muted text, captions */
+  --ink-300:    #8A7965;   /* placeholder, disabled */
+
+  /* Gold leaf — restraint. Frame edges, italic flourishes. Use sparingly. */
+  --gold-500:   #B08A4A;
+  --gold-700:   #8A6A33;
+
+  /* ============================================================
+     SEMANTIC COLOR TOKENS
+     ============================================================ */
+
+  --bg:               var(--taupe-300);   /* page background */
+  --bg-elevated:      var(--cream-100);   /* cards on the taupe */
+  --bg-accent:        var(--wine-500);    /* burgundy cards */
+  --bg-accent-deep:   var(--wine-700);
+
+  --surface-card:     var(--cream-100);
+  --surface-card-2:   var(--cream-200);
+  --surface-wine:     var(--wine-500);
+  --surface-wine-2:   var(--wine-700);
+
+  --fg:               var(--ink-900);
+  --fg-muted:         var(--ink-500);
+  --fg-subtle:        var(--ink-300);
+  --fg-on-wine:       var(--cream-50);
+  --fg-on-wine-muted: var(--wine-50);
+
+  --border-soft:      rgba(94, 71, 51, 0.18);
+  --border-card:      rgba(122, 26, 26, 0.10);
+  --border-wine:      var(--wine-700);
+
+  --accent:           var(--wine-500);
+  --accent-hover:     var(--wine-300);
+  --accent-pressed:   var(--wine-700);
+  --link:             var(--wine-500);
+  --link-hover:       var(--wine-700);
+
+  --focus-ring:       0 0 0 3px rgba(122, 26, 26, 0.35);
+
+  /* ============================================================
+     TYPE — families
+     ============================================================ */
+  --font-display:  "Cormorant Garamond", "EB Garamond", "Hoefler Text", "Garamond", serif;
+  --font-display-alt: "Italiana", "Cormorant Garamond", serif;  /* ultra-thin all-caps editorial */
+  --font-body:     "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-mono:     "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ============================================================
+     TYPE — scale (modular, 1.25 minor third)
+     ============================================================ */
+  --fs-12: 0.75rem;
+  --fs-13: 0.8125rem;
+  --fs-14: 0.875rem;
+  --fs-15: 0.9375rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-28: 1.75rem;
+  --fs-32: 2rem;
+  --fs-40: 2.5rem;
+  --fs-48: 3rem;
+  --fs-56: 3.5rem;
+  --fs-72: 4.5rem;
+  --fs-96: 6rem;
+  --fs-128: 8rem;
+
+  /* Line-heights */
+  --lh-tight:   1.05;
+  --lh-snug:    1.18;
+  --lh-normal:  1.45;
+  --lh-loose:   1.65;
+
+  /* Letter-spacing */
+  --ls-display:  -0.02em;     /* tight for big serif */
+  --ls-body:      0;
+  --ls-eyebrow:   0.28em;     /* wide all-caps eyebrows */
+  --ls-label:     0.08em;
+
+  /* ============================================================
+     SPACING — 4-px base scale
+     ============================================================ */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ============================================================
+     RADII — generous, physical-object rounding
+     ============================================================ */
+  --r-xs:   8px;
+  --r-sm:   12px;
+  --r-md:   18px;        /* default card corner */
+  --r-lg:   28px;        /* hero cards */
+  --r-xl:   40px;        /* full-bleed photo cards */
+  --r-pill: 999px;
+
+  /* ============================================================
+     SHADOWS — soft, warm, like objects on a felt-top table
+     ============================================================ */
+  --shadow-1: 0 1px 2px rgba(58, 10, 12, 0.06),
+              0 2px 6px rgba(58, 10, 12, 0.05);
+  --shadow-2: 0 2px 4px rgba(58, 10, 12, 0.08),
+              0 8px 18px rgba(58, 10, 12, 0.10);
+  --shadow-3: 0 4px 8px rgba(58, 10, 12, 0.10),
+              0 16px 32px rgba(58, 10, 12, 0.14);
+  --shadow-4: 0 8px 14px rgba(58, 10, 12, 0.12),
+              0 28px 56px rgba(58, 10, 12, 0.18);
+
+  /* Inner shadow used inside cream cards for paper-grain depth */
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                  inset 0 -1px 0 rgba(58, 10, 12, 0.04);
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --ease-out-quart:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:     cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:        140ms;
+  --dur-med:         260ms;
+  --dur-slow:        480ms;
+}
+
+/* ============================================================
+   SEMANTIC TYPOGRAPHY — drop-in classes
+   ============================================================ */
+
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3rem, 9vw, var(--fs-128));
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  color: var(--fg);
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6vw, var(--fs-96));
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  color: var(--fg);
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 4.5vw, var(--fs-72));
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display);
+  color: var(--fg);
+}
+
+.display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-56);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  color: var(--fg);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-40);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display);
+  color: var(--fg);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-28);
+  line-height: var(--lh-snug);
+  color: var(--fg);
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-18);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-label);
+  color: var(--fg);
+  margin: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-12);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.eyebrow-display {
+  font-family: var(--font-display-alt);
+  font-weight: 400;
+  font-size: var(--fs-14);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-16);
+  line-height: var(--lh-loose);
+  color: var(--ink-700);
+  margin: 0;
+}
+
+.body-lg {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-18);
+  line-height: var(--lh-loose);
+  color: var(--ink-700);
+}
+
+.body-sm {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-14);
+  line-height: var(--lh-normal);
+  color: var(--fg-muted);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-12);
+  line-height: var(--lh-normal);
+  color: var(--fg-muted);
+  letter-spacing: 0.02em;
+}
+
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-32);
+  line-height: 1.35;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-13);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-13);
+  color: var(--fg-muted);
+  letter-spacing: 0.01em;
+}
+
+/* On a wine card */
+.on-wine { color: var(--fg-on-wine); }
+.on-wine .body, .on-wine p { color: var(--fg-on-wine-muted); }
+.on-wine .eyebrow, .on-wine .eyebrow-display { color: var(--wine-100); }

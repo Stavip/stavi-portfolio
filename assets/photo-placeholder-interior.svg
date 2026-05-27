@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+  
+  <defs>
+    <linearGradient id="ph1-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3D2418"></stop>
+      <stop offset="50%" stop-color="#6E4D33"></stop>
+      <stop offset="100%" stop-color="#4A2F1E"></stop>
+    </linearGradient>
+    <linearGradient id="ph1-light" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E6C895" stop-opacity="0.85"></stop>
+      <stop offset="100%" stop-color="#A57A4D" stop-opacity="0.15"></stop>
+    </linearGradient>
+    <radialGradient id="ph1-glow" cx="50%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#F3D9A8" stop-opacity="0.45"></stop>
+      <stop offset="100%" stop-color="#3D2418" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#ph1-bg)"></rect>
+  
+  <path d="M 220 200 L 220 600 Q 220 720 400 720 Q 580 720 580 600 L 580 200 Q 580 100 400 100 Q 220 100 220 200 Z" fill="url(#ph1-light)"></path>
+  
+  <line x1="400" y1="100" x2="400" y2="720" stroke="#2A1810" stroke-width="6" opacity="0.4"></line>
+  <line x1="220" y1="380" x2="580" y2="380" stroke="#2A1810" stroke-width="4" opacity="0.35"></line>
+  
+  <rect x="0" y="780" width="800" height="220" fill="#2A1810" opacity="0.55"></rect>
+  
+  <rect width="800" height="1000" fill="url(#ph1-glow)"></rect>
+  <text x="40" y="970" font-family="&#39;Italiana&#39;, serif" font-size="14" fill="#E6C895" opacity="0.7" letter-spacing="3">PLACEHOLDER · MUSEUM INTERIOR</text>
+</svg>

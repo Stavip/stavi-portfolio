@@ -2,7 +2,22 @@
 
 The recreated portfolio website for Stavroula Papadaki, built against the design system in this project root.
 
-**Open `index.html`** to see the full single-page prototype. Sections scroll in order:
+## Run locally
+
+```bash
+cd ui_kits/portfolio_site
+npm install
+npm run dev
+```
+
+Open the URL Vite prints (usually `http://localhost:5173`).
+
+Other scripts:
+
+- `npm run build` — production build to `dist/`
+- `npm run preview` — serve the production build locally
+
+**Sections scroll in order:**
 
 1. **Hero** — name, role, intro line, two CTAs, layered portrait card
 2. **About** — first-person bio with cream + wine card stack
@@ -22,6 +37,7 @@ The recreated portfolio website for Stavroula Papadaki, built against the design
 | `LeadershipSection.jsx` | Quote card + conditions / how-I-operate / examples |
 | `WorkSection.jsx` | Stacked work experience rows |
 | `ContactSection.jsx` | Single cream card with form + social row |
-| `Footer.jsx` | Monogram, location, year |
+| `tweaks-panel.jsx` | Optional edit-mode UI shell (`TweaksPanel`, `useTweaks`, control primitives); import when needed |
+| `main.jsx` | Vite entry: composes `App` and mounts `#root` |
 
 All components consume CSS variables from `/colors_and_type.css`. Interactive bits (hover, scroll, smooth-scroll-to-section) are implemented; data is hard-coded — this is a hi-fi mock, not a production app.

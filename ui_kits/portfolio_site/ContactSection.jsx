@@ -1,6 +1,9 @@
 /* Contact — single cream card with form + social row */
 
-function ContactSection() {
+import { useState } from "react";
+import { Section, Eyebrow, Card, Button, useLucide } from "./components.jsx";
+
+export default function ContactSection() {
   useLucide();
   const [focused, setFocused] = useState(null);
   const [vals, setVals] = useState({ name: "", email: "", msg: "" });
@@ -13,7 +16,6 @@ function ContactSection() {
         gap: 56,
         alignItems: "stretch",
       }}>
-        {/* Left — copy */}
         <div style={{ paddingTop: 12 }}>
           <Eyebrow style={{ marginBottom: 14 }}>Contact</Eyebrow>
           <h2 style={{
@@ -25,8 +27,7 @@ function ContactSection() {
             color: "var(--ink-900)",
             margin: 0,
           }}>
-            If you're <em style={{ fontWeight: 400 }}>building something</em><br/>
-            where teams need to figure each other out.
+            Interested in my work, my story, or just want to chat? Feel free to reach out!
           </h2>
           <p style={{
             marginTop: 22,
@@ -36,7 +37,7 @@ function ContactSection() {
             color: "var(--ink-700)",
             maxWidth: 460,
           }}>
-            I'd genuinely love to hear from you. I'm graduating in June 2026 and joining Pump as a BDR for the summer. My inbox is open, and I read every message.
+            I'd genuinely love to hear from you. I'm graduating in June 2026 and joining Pump as a BDR shortly after.
           </p>
 
           <div style={{
@@ -45,13 +46,12 @@ function ContactSection() {
             flexDirection: "column",
             gap: 12,
           }}>
-            <ContactLink icon="mail" label="stavip8@stanford.edu" href="mailto:stavip8@stanford.edu"/>
+            <ContactLink icon="mail" label="staviipp@gmail.com" href="mailto:staviipp@gmail.com"/>
             <ContactLink icon="external-link" label="linkedin.com/in/stavroula-papadaki" href="https://www.linkedin.com/in/stavroula-papadaki/"/>
-            <ContactLink icon="map-pin" label="Palo Alto, CA · Chania, GR"/>
+            <ContactLink icon="map-pin" label="San Francisco, CA"/>
           </div>
         </div>
 
-        {/* Right — form */}
         <Card radius={32} padding={44} shadow={3}>
           <Eyebrow style={{ marginBottom: 22 }}>Send a note</Eyebrow>
           <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
@@ -61,22 +61,15 @@ function ContactSection() {
             <FieldRow label="Email" placeholder="you@somewhere.com" value={vals.email} focused={focused === "email"}
               onFocus={() => setFocused("email")} onBlur={() => setFocused(null)}
               onChange={(v) => setVals({ ...vals, email: v })}/>
-            <FieldRow label="What you're working on" placeholder="A note about your essay, a role, or a coffee in Palo Alto." value={vals.msg} focused={focused === "msg"} multiline
+            <FieldRow label="What you're working on" placeholder="A note about your work, interests or a coffee in SF" value={vals.msg} focused={focused === "msg"} multiline
               onFocus={() => setFocused("msg")} onBlur={() => setFocused(null)}
               onChange={(v) => setVals({ ...vals, msg: v })}/>
           </div>
           <div style={{
             marginTop: 36,
-            display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14,
+            display: "flex",
+            justifyContent: "flex-end",
           }}>
-            <div style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontSize: 14,
-              color: "var(--fg-muted)",
-            }}>
-              I read every message.
-            </div>
             <Button icon="arrow-up-right" onClick={() => alert("(prototype) Message would be sent.")}>Send note</Button>
           </div>
         </Card>
@@ -120,7 +113,6 @@ function FieldRow({ label, placeholder, value, focused, onChange, onFocus, onBlu
           outline: "none",
           resize: "none",
           transition: "border-color var(--dur-fast)",
-          fontStyle: multiline ? "normal" : "normal",
         }}
       />
     </div>
@@ -134,6 +126,7 @@ function ContactLink({ icon, label, href }) {
     <C
       href={href}
       target={href && href.startsWith("http") ? "_blank" : undefined}
+      rel={href && href.startsWith("http") ? "noreferrer" : undefined}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -152,5 +145,3 @@ function ContactLink({ icon, label, href }) {
     </C>
   );
 }
-
-window.ContactSection = ContactSection;

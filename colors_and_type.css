@@ -51,7 +51,7 @@
      SEMANTIC COLOR TOKENS
      ============================================================ */
 
-  --bg:               var(--taupe-300);   /* page background */
+  --bg:               var(--taupe-200);   /* page background (lightened) */
   --bg-elevated:      var(--cream-100);   /* cards on the taupe */
   --bg-accent:        var(--wine-500);    /* burgundy cards */
   --bg-accent-deep:   var(--wine-700);

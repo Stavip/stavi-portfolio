@@ -1,6 +1,10 @@
 /* Header — sticky capsule nav, monogram + sections + CTA */
 
-function Header({ active, onNav }) {
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Monogram, Button, useLucide } from "./components.jsx";
+
+export default function Header({ active, onNav }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -41,15 +45,15 @@ function Header({ active, onNav }) {
           : "0 2px 8px rgba(58,10,12,.10)",
         transition: "all var(--dur-med) var(--ease-out-quart)",
       }}>
-        <a href="#home" onClick={(e) => { e.preventDefault(); onNav("home"); }} style={{ display: "inline-flex" }}>
+        <Link to="/" onClick={() => onNav("home")} style={{ display: "inline-flex" }}>
           <Monogram size={34}/>
-        </a>
+        </Link>
         <nav style={{ display: "flex", gap: 20 }}>
           {items.map((it) => {
             const isActive = active === it.id;
             return (
               <a key={it.id}
-                 href={`#${it.id}`}
+                 href={it.id === "home" ? "/" : `/#${it.id}`}
                  onClick={(e) => { e.preventDefault(); onNav(it.id); }}
                  style={{
                    fontFamily: "var(--font-body)",
@@ -72,5 +76,3 @@ function Header({ active, onNav }) {
     </div>
   );
 }
-
-window.Header = Header;

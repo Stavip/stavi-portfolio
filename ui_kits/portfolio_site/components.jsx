@@ -1,22 +1,35 @@
 /* ============================================================
    Portfolio site — components.jsx
-   Primitives shared across the portfolio. Loaded as a Babel script.
-   Components attach to window at the bottom so other JSX files can use them.
+   Primitives shared across the portfolio (Vite + React).
    ============================================================ */
 
-const { useState, useEffect, useRef } = React;
+import React, { useState, useEffect } from "react";
 
 /* ------------------------------------------------------------
    Eyebrow — small all-caps placard tag above section titles
    ------------------------------------------------------------ */
-function Eyebrow({ children, color = "var(--fg-muted)", style = {} }) {
-  return (
-    <div style={{
+export function Eyebrow({ children, color = "var(--fg-muted)", size = "sm", style = {} }) {
+  const sizes = {
+    sm: {
       fontFamily: "var(--font-display-alt)",
       fontSize: "12px",
       letterSpacing: "0.28em",
+      fontWeight: 400,
+    },
+    section: {
+      fontFamily: "var(--font-display)",
+      fontSize: "clamp(26px, 3.2vw, 34px)",
+      letterSpacing: "0.12em",
+      fontWeight: 500,
+      color: color === "var(--fg-muted)" ? "var(--wine-500)" : color,
+    },
+  };
+  const s = sizes[size] || sizes.sm;
+  return (
+    <div style={{
       textTransform: "uppercase",
       color,
+      ...s,
       ...style,
     }}>
       {children}
@@ -27,7 +40,7 @@ function Eyebrow({ children, color = "var(--fg-muted)", style = {} }) {
 /* ------------------------------------------------------------
    Card — the default cream content card
    ------------------------------------------------------------ */
-function Card({ children, radius = 28, padding = 36, tilt = 0, shadow = 2, style = {}, onClick }) {
+export function Card({ children, radius = 28, padding = 36, tilt = 0, shadow = 2, style = {}, onClick }) {
   const shadows = {
     1: "0 1px 2px rgba(58,10,12,.06), 0 2px 6px rgba(58,10,12,.05)",
     2: "0 2px 4px rgba(58,10,12,.08), 0 8px 18px rgba(58,10,12,.10)",
@@ -52,7 +65,7 @@ function Card({ children, radius = 28, padding = 36, tilt = 0, shadow = 2, style
 /* ------------------------------------------------------------
    WineCard — burgundy accent card
    ------------------------------------------------------------ */
-function WineCard({ children, radius = 28, padding = 36, tilt = 0, shadow = 3, style = {} }) {
+export function WineCard({ children, radius = 28, padding = 36, tilt = 0, shadow = 3, style = {} }) {
   const shadows = {
     2: "0 2px 4px rgba(58,10,12,.12), 0 8px 18px rgba(58,10,12,.18)",
     3: "0 6px 12px rgba(58,10,12,.16), 0 22px 44px rgba(58,10,12,.24)",
@@ -75,9 +88,48 @@ function WineCard({ children, radius = 28, padding = 36, tilt = 0, shadow = 3, s
 }
 
 /* ------------------------------------------------------------
+   LinkedIn mark — rounded square + “in” in portfolio colors
+   ------------------------------------------------------------ */
+export function LinkedInIcon({ size = 16, variant = "secondary" }) {
+  const onDark = variant === "primary" || variant === "onWine";
+  const tile = onDark ? "var(--cream-50)" : "var(--wine-500)";
+  const letters = onDark ? "var(--wine-500)" : "var(--cream-50)";
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      style={{ flexShrink: 0, display: "block" }}
+    >
+      <rect width="24" height="24" rx="3" fill={tile} />
+      <text
+        x="12"
+        y="16.25"
+        textAnchor="middle"
+        fill={letters}
+        fontSize="11.5"
+        fontWeight="700"
+        fontFamily="Arial, Helvetica, sans-serif"
+      >
+        in
+      </text>
+    </svg>
+  );
+}
+
+function ButtonIcon({ icon, variant, size = 16 }) {
+  if (icon === "linkedin") {
+    return <LinkedInIcon size={size} variant={variant} />;
+  }
+  if (!icon) return null;
+  return <i data-lucide={icon} style={{ width: size, height: size }}></i>;
+}
+
+/* ------------------------------------------------------------
    Button — primary wine pill (default), secondary, or text link
    ------------------------------------------------------------ */
-function Button({ children, variant = "primary", size = "md", icon, onClick, href, style = {} }) {
+export function Button({ children, variant = "primary", size = "md", icon, onClick, href, target, rel, style = {} }) {
   const [hover, setHover] = useState(false);
   const sizes = {
     sm: { padding: "8px 16px", fontSize: 13 },
@@ -118,6 +170,8 @@ function Button({ children, variant = "primary", size = "md", icon, onClick, hre
   return (
     <Tag
       href={href}
+      target={target}
+      rel={rel}
       onClick={onClick}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -137,7 +191,7 @@ function Button({ children, variant = "primary", size = "md", icon, onClick, hre
         ...variants[variant],
         ...style,
       }}>
-      {icon && <i data-lucide={icon} style={{ width: 16, height: 16 }}></i>}
+      {icon ? <ButtonIcon icon={icon} variant={variant} size={size === "sm" ? 15 : 16} /> : null}
       {children}
     </Tag>
   );
@@ -146,7 +200,7 @@ function Button({ children, variant = "primary", size = "md", icon, onClick, hre
 /* ------------------------------------------------------------
    Tag — small pill (wine, cream, or outlined)
    ------------------------------------------------------------ */
-function Tag({ children, variant = "wine", style = {} }) {
+export function Tag({ children, variant = "wine", style = {} }) {
   const variants = {
     wine:    { background: "var(--wine-500)", color: "var(--cream-50)", border: "none" },
     cream:   { background: "var(--cream-100)", color: "var(--wine-500)", border: "1px solid rgba(122,26,26,.18)" },
@@ -174,7 +228,7 @@ function Tag({ children, variant = "wine", style = {} }) {
 /* ------------------------------------------------------------
    MetaDot — middle-dot separated meta line
    ------------------------------------------------------------ */
-function MetaDot({ items, color = "var(--fg-muted)", sep = "·", style = {} }) {
+export function MetaDot({ items, color = "var(--fg-muted)", sep = "·", style = {} }) {
   return (
     <div style={{
       display: "inline-flex",
@@ -199,7 +253,7 @@ function MetaDot({ items, color = "var(--fg-muted)", sep = "·", style = {} }) {
 /* ------------------------------------------------------------
    Section — vertical rhythm container
    ------------------------------------------------------------ */
-function Section({ id, children, py = "var(--space-20)", style = {}, screenLabel }) {
+export function Section({ id, children, py = "var(--space-20)", style = {}, screenLabel }) {
   return (
     <section
       id={id}
@@ -218,7 +272,7 @@ function Section({ id, children, py = "var(--space-20)", style = {}, screenLabel
 /* ------------------------------------------------------------
    PhotoCard — rounded photo with optional grain overlay
    ------------------------------------------------------------ */
-function PhotoCard({ src, alt = "", radius = 28, aspect = "3/4", tilt = 0, shadow = 3, grain = true, caption, style = {} }) {
+export function PhotoCard({ src, alt = "", radius = 28, aspect = "3/4", tilt = 0, shadow = 3, grain = true, caption, style = {} }) {
   const shadows = {
     2: "0 4px 10px rgba(58,10,12,.12), 0 12px 24px rgba(58,10,12,.14)",
     3: "0 8px 14px rgba(58,10,12,.14), 0 24px 48px rgba(58,10,12,.18)",
@@ -238,7 +292,7 @@ function PhotoCard({ src, alt = "", radius = 28, aspect = "3/4", tilt = 0, shado
       {grain && (
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: "url(../../assets/grain.svg)",
+          backgroundImage: "url(/assets/grain.svg)",
           backgroundSize: "300px",
           mixBlendMode: "multiply",
           opacity: 0.18,
@@ -262,7 +316,7 @@ function PhotoCard({ src, alt = "", radius = 28, aspect = "3/4", tilt = 0, shado
 /* ------------------------------------------------------------
    Monogram — SP italic, configurable size/variant
    ------------------------------------------------------------ */
-function Monogram({ size = 32, variant = "filled" }) {
+export function Monogram({ size = 32, variant = "filled" }) {
   const styles = {
     filled: { background: "var(--wine-500)", color: "var(--cream-50)", border: "none" },
     outline: { background: "transparent", color: "var(--wine-500)", border: "1.5px solid var(--wine-500)" },
@@ -291,12 +345,8 @@ function Monogram({ size = 32, variant = "filled" }) {
 /* ------------------------------------------------------------
    Re-render Lucide icons whenever new ones land in the DOM.
    ------------------------------------------------------------ */
-function useLucide(dep) {
+export function useLucide(dep) {
   useEffect(() => {
     if (window.lucide) window.lucide.createIcons();
   }, [dep]);
 }
-
-Object.assign(window, {
-  Eyebrow, Card, WineCard, Button, Tag, MetaDot, Section, PhotoCard, Monogram, useLucide,
-});

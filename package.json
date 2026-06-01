@@ -1,0 +1,12 @@
+{
+  "name": "stavi-portfolio",
+  "private": true,
+  "workspaces": [
+    "ui_kits/portfolio_site"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w stavi-portfolio-site",
+    "build": "npm run build -w stavi-portfolio-site",
+    "preview": "npm run preview -w stavi-portfolio-site"
+  }
+}

@@ -24,7 +24,18 @@ These are the canonical inputs the system was built from. Treat the design syste
 | `uploads/Screenshot 2026-05-26 at 3.14.33 PM.png` | Visual reference — taupe + burgundy + cream layered cards (the *target* mood) |
 | `uploads/Screenshot 2026-05-26 at 3.15.32 PM.png` | Visual reference — editorial layout, magazine-collage card layering |
 
-There is **no codebase**, **no Figma**, and **no existing site** — this design system is the starting point. The portfolio itself is built *from* this system.
+There is **no Figma** and **no legacy production site** — this design system is the starting point. The portfolio UI lives under `ui_kits/portfolio_site/`.
+
+### Run the portfolio site locally
+
+From the repository root:
+
+```bash
+npm install
+npm run dev
+```
+
+Or from `ui_kits/portfolio_site/` only: `npm install` then `npm run dev`. Vite prints a local URL (typically `http://localhost:5173`).
 
 ---
 

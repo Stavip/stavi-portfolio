@@ -12,8 +12,14 @@ export default defineConfig({
     preserveSymlinks: true,
   },
   server: {
+    port: 5173,
+    host: true,
     fs: {
       allow: [repoRoot],
     },
+  },
+  preview: {
+    port: 4173,
+    host: true,
   },
 });
